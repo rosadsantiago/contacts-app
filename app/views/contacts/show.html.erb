@@ -1,0 +1,14 @@
+<h1> Contact info </h1>
+<div>
+ <%= @contact.current_update_at  %> 
+</div>
+  <h2><%= @contact.first_name %></h2>
+  <h3><%= @contact.last_name %></h3>
+  <h4><%= @contact.email %></h4>
+  <h5><%= @contact.phone_number %></h5>
+    <a href="/contacts/<%= @contact.id %>/edit">Edit this contact</a>
+    <%= form_tag "/contacts/#{@contact.id}", method: "delete" do %>
+      <input type="submit" value="Destroy contact">
+    <% end %>
+<a href="/contacts">Back to all contacts</a>
+ 
