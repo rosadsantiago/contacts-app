@@ -1,6 +1,18 @@
 class ContactsController < ApplicationController
+  
   def index
-    @contacts = Contact.all
+   sort_attribute = params[:sort_by]
+    search_terms = params[:input_search_terms]
+
+    if search_terms
+      @contacts = Contact.where("first_name ILIKE ?", "%#{search_terms}%")
+    else
+      @contacts = Contact.all
+    end
+
+    if sort_attribute
+      @contacts = Contact.all.order(sort_attribute)
+    end
     render "index.html.erb"
   end
 
@@ -13,8 +25,10 @@ def create
     first_name: params[:form_first_name],
     last_name: params[:form_last_name],
     email: params[:form_email],
-    phone_number: params[:form_phone_number]
-   )
+    phone_number: params[:form_phone_number],
+    middle_name: params[:form_middle_name],
+    bio: params[:form_bio]
+)
    contact.save
    flash[:sucess] = "Contacts succesfully saved!"
    redirect_to "/contacts/#{contact.id}"

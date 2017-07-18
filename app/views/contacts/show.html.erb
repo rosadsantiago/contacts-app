@@ -6,6 +6,9 @@
   <h3><%= @contact.last_name %></h3>
   <h4><%= @contact.email %></h4>
   <h5><%= @contact.phone_number %></h5>
+  <h6><%=   %></h6>
+  <p><%=    %></p>
+
     <a href="/contacts/<%= @contact.id %>/edit">Edit this contact</a>
     <%= form_tag "/contacts/#{@contact.id}", method: "delete" do %>
       <input type="submit" value="Destroy contact">
